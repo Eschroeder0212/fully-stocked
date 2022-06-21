@@ -10,4 +10,4 @@ export const IngredientListProvider = ({list, children}) => {
 return (<IngredientsListContext.Provider value={[ingredientList, setIngredientList]}>
 {children}
     </IngredientsListContext.Provider>)
-}
+};

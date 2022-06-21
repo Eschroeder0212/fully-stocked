@@ -2,6 +2,7 @@ import React, { useContext } from "react"
 import cocktails from "../../assets/cocktails.json"
 import { useIngredientList } from "../IngredientsContext"
 import { useShoppingList } from "../ShoppingListContext"
+import { useNavigate } from "react-router-dom";
 
 export const CocktailList = () => {
     const [ingredientList, setIngredientList] = useIngredientList()
@@ -14,9 +15,9 @@ export const CocktailList = () => {
     }
     const addToInventory = (ingredient) => {
         const newList = [...ingredientList, ingredient];
-
         setIngredientList(newList);
         console.log(newList);
+        
     }
     return (
 
