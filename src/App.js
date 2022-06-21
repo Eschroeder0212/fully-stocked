@@ -1,31 +1,29 @@
 import logo from './logo.svg';
 import './App.css';
-import { CocktailList } from './components/CocktailList/cocktailList.js'
-import { IngredientListProvider } from './components/IngredientsContext.js'
-import { ShoppingListProvider } from './components/ShoppingListContext.js'
-import { NavBar } from './components/NavBar';
-import { SearchBar } from './components/SearchBar';
-import { useState } from 'react'
+import { CocktailList } from './components/CocktailList/cocktailList.js';
+import { IngredientListProvider } from './components/IngredientsContext.js';
+import { ShoppingListProvider } from './components/ShoppingListContext.js';
+import { Login } from './components/CocktailList/logInReg';
+import { useState } from 'react';
+import reactDOM from "react-dom/client";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
 
 
 function App() {
   return (
     <div className="App">
-
-<NavBar>
-<SearchBar>
-<ShoppingListProvider  list={[]}>
-<IngredientListProvider list={[]}>
-
-<CocktailList></CocktailList>
-
-</IngredientListProvider>
-</ShoppingListProvider>
-</SearchBar>
-</NavBar>
-   
-
-    </div>
+  <ShoppingListProvider  list={[]}>
+    <IngredientListProvider list={[]}>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Login />} /> 
+          <Route path="/cocktails" element={<CocktailList />} />
+        </Routes>
+      </BrowserRouter>
+    </IngredientListProvider>
+  </ShoppingListProvider>
+</div>
 
   );
 }
