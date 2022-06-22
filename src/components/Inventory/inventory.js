@@ -1,23 +1,31 @@
 import React, { useState } from 'react';
-import cocktails from "../../assets/cocktails.json"
+import { useIngredientList } from '../IngredientsContext';
 
-export const myInventory = () => {
+
+
+
+
+
+
+export const MyInventory = () => {
     return (
         <h1>My Bar</h1>
+       
+        
     )
 }
 
-export function deleteFromInventory() {
-    const [ingredientList, setIngredientList] = React.useState(arr);
+export function DeleteFromInventory() {
+    const [ingredientList, setIngredientList] = React.useState(ingredientList);
   
     const deleteItem = (index) => () =>
-      setItems((items) => items.filter((_, i) => i !== index));
+      setIngredientList((ingredientList) => ingredientList.filter((_, i) => i !== index));
   
     return (
       <>
-        {items.map((it, index) => {
+        {ingredientList.map((it, index) => {
           return (
-            <div key={it.id}>
+            <div key={it.name}>
               {it.name} <button onClick={deleteItem(index)}>delete</button>
             </div>
           );
