@@ -2,17 +2,17 @@ import { useState } from "react";
 import { CocktailList } from "./CocktailList/cocktailList";
 
 
-const getFilteredItems = (query, items) => {
+const getFilteredItems = (query, cocktail) => {
     if (!query){
-        return items;
+        return cocktail.Name;
     }
-    return items.filter(cocktail => cocktail.name.includes(query))
+    return cocktail.filter(cocktail => cocktail.name.includes(query))
 }
 
 export const SearchBar = () => {
-    const [query, setQuery] = useState("");
+    const [query, setQuery] = useState('');
 
-    const {cocktails} = CocktailList
+    const {cocktails} = CocktailList();
     const {items} = cocktails
 
     const filteredItems = getFilteredItems(query, items);

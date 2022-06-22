@@ -8,12 +8,14 @@ import { MyInventory } from './components/Inventory/inventory';
 import { useState } from 'react';
 import reactDOM from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { SearchBar } from './components/SearchBar';
 
 
 
 function App() {
   return (
     <div className="App">
+  <SearchBar>
   <ShoppingListProvider  list={[]}>
     <IngredientListProvider list={[]}>
       <BrowserRouter>
@@ -25,6 +27,7 @@ function App() {
       </BrowserRouter>
     </IngredientListProvider>
   </ShoppingListProvider>
+  </SearchBar>
 </div>
 
   );

@@ -3,12 +3,15 @@ import cocktails from "../../assets/cocktails.json"
 import { useIngredientList } from "../IngredientsContext"
 import { useShoppingList } from "../ShoppingListContext"
 import { useNavigate } from "react-router-dom";
+import { SearchBar } from "../SearchBar";
+
+
 
 export const CocktailList = () => {
-    const [ingredientList, setIngredientList] = useIngredientList()
-    const [shoppingList, setShoppingList] = useShoppingList()
+    const [ingredientList, setIngredientList] = useIngredientList();
+    const [shoppingList, setShoppingList] = useShoppingList();
     const addToShoppingList = (ingredient) => {
-        const newList = [...shoppingList, ingredient];
+    const newList = [...shoppingList, ingredient];
 
         setShoppingList(newList);
         console.log(newList);
@@ -20,7 +23,7 @@ export const CocktailList = () => {
         
     }
     return (
-
+            
         <div className="container cocktails-list">
             <div className="row">
                 {cocktails.Drinks.map(function (cocktail) {
