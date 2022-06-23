@@ -5,9 +5,9 @@ export const useIngredientList = () => {
     return useContext(IngredientsListContext)
 }
 
-export const IngredientListProvider = ({list, children}) => {
+export const IngredientListProvider = ({ list, children }) => {
     const [ingredientList, setIngredientList] = useState(list)
-return (<IngredientsListContext.Provider value={[ingredientList, setIngredientList]}>
-{children}
+    return (<IngredientsListContext.Provider value={[ingredientList, setIngredientList]}>
+        {children}
     </IngredientsListContext.Provider>)
 };
