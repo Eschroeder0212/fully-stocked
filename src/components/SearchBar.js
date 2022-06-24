@@ -2,11 +2,12 @@ import { useState } from "react";
 import cocktails from "../assets/cocktails.json"
 import { DrinkCard } from "./DrinkCards";
 
+
 export const SearchBar = () => {
-    const [filteredItems, setFilteredItems] = useState([])
+    const [filteredItems, setFilteredItems] = useState(cocktails.Drinks)
     const getFilteredItems = (query) => {
         if (query.length === 0) {
-            return []
+            return cocktails.Drinks
         }
         return cocktails.Drinks.filter(cocktail => cocktail.Name.toLowerCase().includes(query.toLowerCase()))
              

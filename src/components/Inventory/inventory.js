@@ -1,18 +1,2 @@
-import React, { useState } from 'react';
-import { useIngredientList } from '../IngredientsContext';
-
-
-
-
-
-
-
-export const MyInventory = () => {
-    const [ingredientList,] = useIngredientList()
-    return (
-        <h1>My Bar</h1>
-
-
-    )
-}
-
+import React, { useContext } from 'react'
+import { IngredientListProvider } from '../IngredientsContext';

@@ -1,6 +1,26 @@
+import { useIngredientList } from "./IngredientsContext"
 import { cocktailImageDisplay } from "./CocktailList/cocktailList";
+import { useShoppingList } from "./ShoppingListContext"
+import React, { useContext } from "react"
+import { MyBar } from "./Inventory/Inventory";
+import { render } from "@testing-library/react";
 
 export const DrinkCard = ({ cocktail }) => {
+
+    const [ingredientList, setIngredientList] = useIngredientList();
+    const [shoppingList, setShoppingList] = useShoppingList();
+
+    const addToShoppingList = (ingredient) => {
+        const newList = [...shoppingList, ingredient];
+
+        setShoppingList(newList);
+        console.log(newList);
+    }
+    const addToInventory = (ingredient) => {
+        const newList = [...ingredientList, ingredient];
+        setIngredientList(newList);
+    }
+
    
         
        
@@ -13,7 +33,9 @@ export const DrinkCard = ({ cocktail }) => {
                     <ul>
                         {cocktail.Ingredients.map((ingredient) => (
                             <li key={ingredient.Ingredient}>
+                                 <button onClick={() => addToInventory(ingredient.Ingredient)}>+ inventory</button>
                                 {ingredient.Measurement} - {ingredient.Ingredient}
+                                <button onClick={() => addToShoppingList(ingredient.Ingredient)}>+ shopping list</button>
                             </li>
                         ))}
                     </ul>
