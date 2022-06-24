@@ -15,9 +15,10 @@ import { SearchBar } from './components/SearchBar';
 function App() {
   return (
     <div className="App">
-  <SearchBar>
+
   <ShoppingListProvider  list={[]}>
     <IngredientListProvider list={[]}>
+      <SearchBar>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Login />} /> 
@@ -25,9 +26,10 @@ function App() {
           <Route path="/inventory" element={<MyInventory />} />
         </Routes>
       </BrowserRouter>
+      </SearchBar>
     </IngredientListProvider>
   </ShoppingListProvider>
-  </SearchBar>
+
 </div>
 
   );

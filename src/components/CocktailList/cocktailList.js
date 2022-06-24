@@ -11,7 +11,7 @@ export const CocktailList = () => {
     const [ingredientList, setIngredientList] = useIngredientList();
     const [shoppingList, setShoppingList] = useShoppingList();
     const addToShoppingList = (ingredient) => {
-    const newList = [...shoppingList, ingredient];
+        const newList = [...shoppingList, ingredient];
 
         setShoppingList(newList);
         console.log(newList);
@@ -20,50 +20,50 @@ export const CocktailList = () => {
         const newList = [...ingredientList, ingredient];
         setIngredientList(newList);
         console.log(newList);
-        
+
     }
     return (
-            
+
         <div className="container cocktails-list">
             <div className="row">
                 {cocktails.Drinks.map(function (cocktail) {
-                   
-                 return (
-                <>
-                <div key={cocktail}>
 
-                {cocktailImageDisplay(cocktail.Name)}
-                <div>
-                Name: {cocktail.Name}
-                </div>
-                                                             
-                <div>
-                {cocktail.Ingredients.map ((ingredient) => {
-                return ( 
-                 <>
-                <div key={ingredient}>
-                <button onClick = {()=> addToInventory(ingredient.Ingredient)}>+ inventory</button>
-                Ingredients:{ingredient.Ingredient}
-                Measurement: {ingredient.Measurement}
-                <button onClick = {()=> addToShoppingList(ingredient.Ingredient)}>+ shopping list</button>
-                </div>
-                </>
-                )
-                                        
-                })
-                                    
-                }
-                                       
-                </div>                  
-                <div>
-                Method: {cocktail.Method}
-                </div>
-                <div>
-                Garnish: {cocktail.Garnish}
-                </div>
-                </div>
-                </>
-                )
+                    return (
+                        <>
+                            <div key={cocktail}>
+
+                                {cocktailImageDisplay(cocktail.Name)}
+                                <div>
+                                    Name: {cocktail.Name}
+                                </div>
+
+                                <div>
+                                    {cocktail.Ingredients.map((ingredient) => {
+                                        return (
+                                            <>
+                                                <div key={ingredient}>
+                                                    <button onClick={() => addToInventory(ingredient.Ingredient)}>+ inventory</button>
+                                                    Ingredients:{ingredient.Ingredient}
+                                                    Measurement: {ingredient.Measurement}
+                                                    <button onClick={() => addToShoppingList(ingredient.Ingredient)}>+ shopping list</button>
+                                                </div>
+                                            </>
+                                        )
+
+                                    })
+
+                                    }
+
+                                </div>
+                                <div>
+                                    Method: {cocktail.Method}
+                                </div>
+                                <div>
+                                    Garnish: {cocktail.Garnish}
+                                </div>
+                            </div>
+                        </>
+                    )
 
 
 
@@ -78,13 +78,13 @@ export const CocktailList = () => {
 }
 
 export const cocktailImageDisplay = (Name) => {
-    return(
+    return (
         <div className="cocktail-img">
-            <img 
-            className="contain-fit"
-            src={`/cocktailImages/${Name}.jpg`} 
-            width="300"
-            alt = {`${Name}`}
+            <img
+                className="contain-fit"
+                src={`/cocktailImages/${Name}.jpg`}
+                width="300"
+                alt={`${Name}`}
             />
         </div>
     )

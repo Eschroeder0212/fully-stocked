@@ -1,27 +1,26 @@
 import { useState } from "react";
-import { CocktailList } from "./CocktailList/cocktailList";
-
-
-const getFilteredItems = (query, cocktail) => {
-    if (!query){
-        return cocktail.Name;
-    }
-    return cocktail.filter(cocktail => cocktail.name.includes(query))
-}
+import cocktails from "../assets/cocktails.json"
 
 export const SearchBar = () => {
-    const [query, setQuery] = useState('');
-
-    const {cocktails} = CocktailList();
-    const {items} = cocktails
-
-    const filteredItems = getFilteredItems(query, items);
+    const [filteredItems, setFilteredItems] = useState([])
+    const getFilteredItems = (query) => {
+        if (query.length === 0) {
+            return []
+        }
+        return cocktails.Drinks.filter(cocktail => cocktail.Name.toLowerCase().includes(query.toLowerCase()))
+        
+        
+    }
     return (
         <div>
             <label className="searchBar">search</label>
-            <input type="text" onChange={evt => setQuery(evt.target.value)} />
+            <input type="text" onChange={(evt) => {
+                setFilteredItems(getFilteredItems(evt.target.value))
+            }} />
             <ul>
-                {filteredItems.map(value => <h3 key={value.name}></h3>)}
+                {filteredItems.map(item => <h3 key={item.Name}>{[item.Name, 
+                     item.Ingredients, item.Ingredients.Measurement,
+                    item.Method, item.Garnish]}</h3>)}
             </ul>
         </div>
     );
