@@ -13,8 +13,14 @@ export const CocktailCard = ({cocktail}) => {
         </div>
         <h3>{cocktail.Name}</h3>
         {cocktail.Ingredients.map( (ingredient) => {
-            return <IngredientItem key={ingredient.Ingredient} ingredient={ingredient.Ingredient}/>
+            return (<> <p>{ingredient.Measurement}</p><IngredientItem key={ingredient.Ingredient} ingredient={ingredient.Ingredient} />
+            </>
+            )
         } )}
+                <h4>Method</h4>
+                    <p>{cocktail.Method}</p>
+                    <p>Garnish with: {cocktail.Garnish}</p>
+                
         </div>
     )
 }

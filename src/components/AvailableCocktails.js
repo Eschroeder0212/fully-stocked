@@ -1,6 +1,8 @@
 import cocktails from "../assets/cocktails.json"
 import { CocktailCard } from "./CocktailCard";
 import { useIngredientList } from "./IngredientsContext";
+
+
 export const AvailableCocktails = () => {
     const [ingredientList] = useIngredientList()
     const available = cocktails.Drinks.filter((cocktail) => {

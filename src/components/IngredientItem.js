@@ -29,14 +29,14 @@ export const IngredientItem = ({ingredient}) => {
             <span>{ingredient}</span>
             <div>
             {inShoppingList ? (
-            <button onClick={() => removeFromShoppingList(ingredient)}>Remove from Shopping List</button>
+            <button onClick={() => removeFromShoppingList(ingredient)}>- Shopping List</button>
             ) : (
-                <button onClick={() => addToShoppingList(ingredient)}>Add to Shopping List</button>
+                <button onClick={() => addToShoppingList(ingredient)}>+ Shopping List</button>
             )}
             {inIngredientList ? (
-                <button onClick={() => removeFromIngredientList(ingredient)}>Remove from Inventory</button>
+                <button onClick={() => removeFromIngredientList(ingredient)}>- Inventory</button>
             ) : (
-                <button onClick={() => addToIngredientList(ingredient)}>Add to Inventory</button>
+                <button onClick={() => addToIngredientList(ingredient)}>+ Inventory</button>
             )}
             </div>
             
