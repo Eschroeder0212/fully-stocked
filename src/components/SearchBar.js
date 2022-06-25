@@ -1,15 +1,14 @@
 import { useState } from "react";
 import cocktails from "../assets/cocktails.json"
+import { CocktailCard } from "./CocktailCard";
 
 export const SearchBar = () => {
-    const [filteredItems, setFilteredItems] = useState([])
+    const [filteredItems, setFilteredItems] = useState(cocktails.Drinks)
     const getFilteredItems = (query) => {
         if (query.length === 0) {
-            return []
+            return cocktails.Drinks
         }
         return cocktails.Drinks.filter(cocktail => cocktail.Name.toLowerCase().includes(query.toLowerCase()))
-        
-        
     }
     return (
         <div>
@@ -18,9 +17,7 @@ export const SearchBar = () => {
                 setFilteredItems(getFilteredItems(evt.target.value))
             }} />
             <ul>
-                {filteredItems.map(item => <h3 key={item.Name}>{[item.Name, 
-                     item.Ingredients, item.Ingredients.Measurement,
-                    item.Method, item.Garnish]}</h3>)}
+                {filteredItems.map(item => <CocktailCard key={item.Name} cocktail={item} />)}
             </ul>
         </div>
     );
