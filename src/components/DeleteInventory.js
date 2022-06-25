@@ -1,4 +1,4 @@
-import { MyInventory } from "./Inventory/Inventory";
+import { MyInventory } from "./Inventory/inventory";
 
 {/*export function DeleteFromInventory() {
     const [ingredientList, setIngredientList] = React.useState(ingredientList);

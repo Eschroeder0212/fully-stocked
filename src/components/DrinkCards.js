@@ -2,8 +2,7 @@ import { useIngredientList } from "./IngredientsContext"
 import { cocktailImageDisplay } from "./CocktailList/cocktailList";
 import { useShoppingList } from "./ShoppingListContext"
 import React, { useContext } from "react"
-import { MyBar } from "./Inventory/Inventory";
-import { render } from "@testing-library/react";
+
 
 export const DrinkCard = ({ cocktail }) => {
 

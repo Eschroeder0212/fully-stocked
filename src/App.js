@@ -1,33 +1,28 @@
-import logo from './logo.svg';
 import './App.css';
-import { CocktailList } from './components/CocktailList/cocktailList.js';
 import { IngredientListProvider } from './components/IngredientsContext.js';
 import { ShoppingListProvider } from './components/ShoppingListContext.js';
+import { ShoppingList } from './components/ShoppingList/shoppingList';
 import { Login } from './components/CocktailList/logInReg';
-import { MyBar } from './components/Inventory/Inventory';
-import { useState } from 'react';
-import reactDOM from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { SearchBar } from './components/SearchBar';
-import { DrinkCard } from './components/DrinkCards';
-
-
-
+import {NavBar} from './components/NavBar';
+import {IngredientList} from './components/Inventory/inventory';
+import {AvailableCocktails} from './components/AvailableCocktails';
 function App() {
   return (
     <div className="App">
-
   <ShoppingListProvider  list={[]}>
     <IngredientListProvider list={[]}>
-      <SearchBar>
       <BrowserRouter>
+        <NavBar></NavBar>
         <Routes>
-          <Route path="/" element={<Login />} /> 
-          <Route path="/cocktails" element={<CocktailList />} />
-          <Route path="/inventory" element={<MyBar />} />
+          <Route index element={<Login />} /> 
+          <Route path="/cocktails" element={<SearchBar />} />
+          <Route path="/shopping" element={<ShoppingList />} />
+          <Route path="/inventory" element={<IngredientList />} />
+          <Route path="/available" element={<AvailableCocktails />} />
         </Routes>
       </BrowserRouter>
-      </SearchBar>
     </IngredientListProvider>
   </ShoppingListProvider>
 
