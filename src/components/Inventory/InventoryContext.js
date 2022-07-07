@@ -13,7 +13,7 @@ export const InventoryListProvider = ({ list, children }) => {
         fetch("http://localhost:3004/inventoryList").then(response => response.json()).then( (inventory) =>{
             setInventoryList(inventory.filter(item=>item.userId === userId))
         })
-        }, [])
+        }, [userId])
     return (<InventoryListContext.Provider value={[inventoryList, setInventoryList]}>
         {children}
     </InventoryListContext.Provider>)

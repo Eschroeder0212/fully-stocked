@@ -19,6 +19,11 @@
       "email": "fart@fart.com",
       "password": "12345",
       "id": 4
+    },
+    {
+      "email": "hello@bitch.com",
+      "password": "",
+      "id": 5
     }
   ],
   "Drinks": [
@@ -1061,6 +1066,41 @@
       "id": 1,
       "userId": 1,
       "IngredientId": 1
+    },
+    {
+      "userId": 4,
+      "IngredientId": 1,
+      "id": 2
+    },
+    {
+      "userId": 4,
+      "IngredientId": 2,
+      "id": 3
+    },
+    {
+      "userId": 4,
+      "IngredientId": 3,
+      "id": 4
+    },
+    {
+      "userId": 4,
+      "IngredientId": 4,
+      "id": 5
+    },
+    {
+      "userId": 4,
+      "IngredientId": 78,
+      "id": 6
+    },
+    {
+      "userId": 4,
+      "IngredientId": 19,
+      "id": 7
+    },
+    {
+      "userId": 4,
+      "IngredientId": 25,
+      "id": 8
     }
   ],
   "DrinkIngredients": [

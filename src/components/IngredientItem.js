@@ -1,14 +1,19 @@
 import { useShoppingList } from "./ShoppingListContext"
 import { useIngredientList } from "./IngredientsContext";
 import { useLogin } from "./CocktailList/LoginContext";
+import { useInventoryList } from "./Inventory/InventoryContext";
+
+
+
 export const IngredientItem = ({ingredient}) => {
 
     const [userId] = useLogin();
+    const [inventoryList, setInventoryList] = useInventoryList();
 
 
     const [shoppingList, setShoppingList] = useShoppingList()
-    const [ingredientList, setIngredientList] = useIngredientList()
-
+    const [ingredientList] = useIngredientList()
+    
     const addToShoppingList = (ingredient) => {
         const newShoppingListItem = {
             userId, 
@@ -27,14 +32,24 @@ export const IngredientItem = ({ingredient}) => {
         }
         fetch("http://localhost:3004/shoppingList", postOptions).then( () => {
             return fetch("http://localhost:3004/shoppingList")
-        }).then(response.json()).then(setShoppingList)
+        }).then(response => response.json()).then((shopList) =>{
+            setShoppingList(shopList.filter(item=>item.userId === userId))
+        })
         
     }
     const removeFromShoppingList = (ingredient) => {
-        const newList = shoppingList.filter((item)=> item !== ingredient)
-        setShoppingList(newList);
+        const shoppingListItem = shoppingList.find(item => item.IngredientId === ingredient.id)
+        if (shoppingListItem){
+            fetch(`http://localhost:3004/shoppingList/${shoppingListItem.id}`, {method: "DELETE"}).then( () => {
+                return fetch("http://localhost:3004/shoppingList")
+            }).then(response => response.json()).then((shopList) =>{
+                setShoppingList(shopList.filter(item=>item.userId === userId))
+            })
+        }
     }
-    const addToIngredientList = (ingredient) => {
+
+
+    const addToInventory = (ingredient) => {
         const newInventoryItem = {
             userId, 
             IngredientId: ingredient.id
@@ -52,28 +67,37 @@ export const IngredientItem = ({ingredient}) => {
         }
         fetch("http://localhost:3004/inventoryList", postOptions).then( () => {
             return fetch("http://localhost:3004/inventoryList")
-        }).then(response.json()).then(setIngredientList);
+        }).then(response => response.json()).then((inventory) =>{
+            setInventoryList(inventory.filter(item=>item.userId === userId))
+        });
     }
-    const removeFromIngredientList = (ingredient) => {
-        const newList = ingredientList.filter((item)=> item !== ingredient)
-        setIngredientList(newList);
+    const removeFromInventory = (ingredient) => {
+        const inventoryListItem = inventoryList.find(item => item.IngredientId === ingredient.id)
+        if (inventoryListItem){
+            fetch(`http://localhost:3004/inventoryList/${inventoryListItem.id}`, {method: "DELETE"}).then( () => {
+                return fetch("http://localhost:3004/inventoryList")
+            }).then(response => response.json()).then((invList) =>{
+                setInventoryList(invList.filter(item=>item.userId === userId))
+            })
+        }
     }
-    const inShoppingList = shoppingList.some((item) => item === ingredient)
-    const inIngredientList = ingredientList.some((item) => item === ingredient)
+    
+    const inShoppingList = (ingredient) => shoppingList.some((item) => item.IngredientId === ingredient.id)
+    const inInventory = (ingredient) => inventoryList.some((item) => item.IngredientId === ingredient.id)
 
     return(
         <div>
             <span>{ingredient.Ingredient}</span>
             <div>
-            {inShoppingList ? (
+            {inShoppingList(ingredient) ? (
             <button onClick={() => removeFromShoppingList(ingredient)}>- Shopping List</button>
             ) : (
                 <button onClick={() => addToShoppingList(ingredient)}>+ Shopping List</button>
             )}
-            {inIngredientList ? (
-                <button onClick={() => removeFromIngredientList(ingredient)}>- Inventory</button>
+            {inInventory(ingredient) ? (
+                <button onClick={() => removeFromInventory(ingredient)}>- Inventory</button>
             ) : (
-                <button onClick={() => addToIngredientList(ingredient)}>+ Inventory</button>
+                <button onClick={() => addToInventory(ingredient)}>+ Inventory</button>
             )}
             </div>
             

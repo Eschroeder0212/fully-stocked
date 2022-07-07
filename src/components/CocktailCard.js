@@ -14,7 +14,7 @@ export const CocktailCard = ({cocktail, ingredients, drinkIngredients}) => {
         <h3>{cocktail.Name}</h3>
         {drinkIngredients.map( (drinkIngredient) => {
             return (<> <p>{drinkIngredient.Measurement}</p><IngredientItem key={drinkIngredient.id} 
-            ingredient={ingredients.includes(undefined) ? ingredients.find(ingredient => ingredient.id === drinkIngredient.IngredientID).Ingredient : ""} />
+            ingredient= {ingredients.find(ingredient => ingredient.id === drinkIngredient.IngredientID)} />
             </>
             )
         } )}
