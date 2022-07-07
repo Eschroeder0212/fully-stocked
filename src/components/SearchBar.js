@@ -1,8 +1,12 @@
 import { useEffect, useState } from "react";
 import { CocktailCard } from "./CocktailCard";
+import { useLogin } from "./CocktailList/LoginContext";
 import { useIngredientList } from "./IngredientsContext";
+import { Navigate } from "react-router-dom";
 
 export const SearchBar = () => {
+    const [userId] = useLogin()
+    
     const [ingredients] = useIngredientList()
     const [cocktails, setCocktails] = useState([])
     const [cocktailIngredients, setCocktailIngredients] = useState([])
@@ -34,6 +38,7 @@ const assembleCocktail = (cocktail) => {
         }
         return cocktails.filter(cocktail => cocktail.Name.toLowerCase().includes(searchQuery.toLowerCase()))
     }
+    if(userId === 0) return <Navigate to= "/"></Navigate>
     return (
         <div>
             <label className="searchBar">search</label>
