@@ -1,23 +1,54 @@
-import { useState } from "react";
-import cocktails from "../assets/cocktails.json"
+import { useEffect, useState } from "react";
 import { CocktailCard } from "./CocktailCard";
+import { useIngredientList } from "./IngredientsContext";
 
 export const SearchBar = () => {
-    const [filteredItems, setFilteredItems] = useState(cocktails.Drinks)
-    const getFilteredItems = (query) => {
-        if (query.length === 0) {
-            return cocktails.Drinks
+    const [ingredients] = useIngredientList()
+    const [cocktails, setCocktails] = useState([])
+    const [cocktailIngredients, setCocktailIngredients] = useState([])
+    const [searchQuery, setSearchQuery] = useState("")
+
+    const getData = async () => {
+        await fetch("http://localhost:3004/DrinkIngredients").then(response => response.json()).then(setCocktailIngredients)
+        await fetch("http://localhost:3004/Drinks").then(response => response.json()).then(setCocktails)
+    }
+
+    useEffect(() => {
+        getData()
+    }, [])
+
+
+
+const assembleCocktail = (cocktail) => {
+    const relevantIngredients = (cocktailIngredients
+    .filter(cocktailIngredient => cocktailIngredient.drinkId === cocktail.id)
+    .map(cocktailIngredient => ingredients.find(ingredient => ingredient.id === cocktailIngredient.IngredientID)))
+    console.log(relevantIngredients)
+    return relevantIngredients
+}
+
+
+    const getFilteredItems = () => {
+        if (searchQuery.length === 0) {
+            return cocktails
         }
-        return cocktails.Drinks.filter(cocktail => cocktail.Name.toLowerCase().includes(query.toLowerCase()))
+        return cocktails.filter(cocktail => cocktail.Name.toLowerCase().includes(searchQuery.toLowerCase()))
     }
     return (
         <div>
             <label className="searchBar">search</label>
             <input type="text" onChange={(evt) => {
-                setFilteredItems(getFilteredItems(evt.target.value))
+                setSearchQuery(evt.target.value)
             }} />
             <ul>
-                {filteredItems.map(item => <CocktailCard key={item.Name} cocktail={item} />)}
+                {getFilteredItems().map(item => <CocktailCard
+                key={item.Name}
+                cocktail={item}
+                ingredients={assembleCocktail(item)}
+                drinkIngredients = {cocktailIngredients
+                    .filter(cocktailIngredient => cocktailIngredient.drinkId === item.id)}
+
+                />)}
             </ul>
         </div>
     );

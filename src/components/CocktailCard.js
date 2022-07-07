@@ -1,6 +1,6 @@
 import { IngredientItem } from "./IngredientItem"
 
-export const CocktailCard = ({cocktail}) => {
+export const CocktailCard = ({cocktail, ingredients, drinkIngredients}) => {
     return(
         <div>
         <div className="cocktail-img">
@@ -12,8 +12,9 @@ export const CocktailCard = ({cocktail}) => {
             />
         </div>
         <h3>{cocktail.Name}</h3>
-        {cocktail.Ingredients.map( (ingredient) => {
-            return (<> <p>{ingredient.Measurement}</p><IngredientItem key={ingredient.Ingredient} ingredient={ingredient.Ingredient} />
+        {drinkIngredients.map( (drinkIngredient) => {
+            return (<> <p>{drinkIngredient.Measurement}</p><IngredientItem key={drinkIngredient.id} 
+            ingredient={ingredients.includes(undefined) ? ingredients.find(ingredient => ingredient.id === drinkIngredient.IngredientID).Ingredient : ""} />
             </>
             )
         } )}

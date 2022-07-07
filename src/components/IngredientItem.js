@@ -1,21 +1,58 @@
 import { useShoppingList } from "./ShoppingListContext"
 import { useIngredientList } from "./IngredientsContext";
+import { useLogin } from "./CocktailList/LoginContext";
 export const IngredientItem = ({ingredient}) => {
+
+    const [userId] = useLogin();
+
 
     const [shoppingList, setShoppingList] = useShoppingList()
     const [ingredientList, setIngredientList] = useIngredientList()
 
     const addToShoppingList = (ingredient) => {
-        const newList = [...shoppingList, ingredient];
-        setShoppingList(newList);
+        const newShoppingListItem = {
+            userId, 
+            IngredientId: ingredient.id
+
+        }
+
+        const postOptions = {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+
+            },
+            body: JSON.stringify(newShoppingListItem)
+
+        }
+        fetch("http://localhost:3004/shoppingList", postOptions).then( () => {
+            return fetch("http://localhost:3004/shoppingList")
+        }).then(response.json()).then(setShoppingList)
+        
     }
     const removeFromShoppingList = (ingredient) => {
         const newList = shoppingList.filter((item)=> item !== ingredient)
         setShoppingList(newList);
     }
     const addToIngredientList = (ingredient) => {
-        const newList = [...ingredientList, ingredient];
-        setIngredientList(newList);
+        const newInventoryItem = {
+            userId, 
+            IngredientId: ingredient.id
+
+        }
+
+        const postOptions = {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+
+            },
+            body: JSON.stringify(newInventoryItem)
+
+        }
+        fetch("http://localhost:3004/inventoryList", postOptions).then( () => {
+            return fetch("http://localhost:3004/inventoryList")
+        }).then(response.json()).then(setIngredientList);
     }
     const removeFromIngredientList = (ingredient) => {
         const newList = ingredientList.filter((item)=> item !== ingredient)
@@ -26,7 +63,7 @@ export const IngredientItem = ({ingredient}) => {
 
     return(
         <div>
-            <span>{ingredient}</span>
+            <span>{ingredient.Ingredient}</span>
             <div>
             {inShoppingList ? (
             <button onClick={() => removeFromShoppingList(ingredient)}>- Shopping List</button>
