@@ -12,7 +12,7 @@ export const IngredientItem = ({ingredient}) => {
 
 
     const [shoppingList, setShoppingList] = useShoppingList()
-    const [ingredientList] = useIngredientList()
+    
     
     const addToShoppingList = (ingredient) => {
         const newShoppingListItem = {

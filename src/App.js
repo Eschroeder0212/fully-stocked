@@ -10,6 +10,7 @@ import { IngredientList } from './components/Inventory/inventory';
 import { AvailableCocktails } from './components/AvailableCocktails';
 import { LoginProvider } from './components/CocktailList/LoginContext';
 import { InventoryListProvider } from './components/Inventory/InventoryContext';
+import { ChangePassword } from './components/changePassword';
 function App() {
   return (
     <div className="App">
@@ -25,6 +26,7 @@ function App() {
                   <Route path="/shopping" element={<ShoppingList />} />
                   <Route path="/inventory" element={<IngredientList />} />
                   <Route path="/available" element={<AvailableCocktails />} />
+                  <Route path="/changePassword" element={<ChangePassword />} />
                 </Routes>
               </BrowserRouter>
             </InventoryListProvider>
