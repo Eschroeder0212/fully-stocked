@@ -24,6 +24,11 @@
       "email": "hello@bitch.com",
       "password": "",
       "id": 5
+    },
+    {
+      "email": "brackish@brack.com",
+      "password": "brack",
+      "id": 6
     }
   ],
   "Drinks": [
@@ -1056,9 +1061,24 @@
   ],
   "shoppingList": [
     {
-      "id": 1,
+      "userId": 4,
+      "IngredientId": 1,
+      "id": 2
+    },
+    {
       "userId": 1,
-      "IngredientId": 1
+      "IngredientId": 78,
+      "id": 3
+    },
+    {
+      "userId": 1,
+      "IngredientId": 25,
+      "id": 4
+    },
+    {
+      "userId": 1,
+      "IngredientId": 19,
+      "id": 5
     }
   ],
   "inventoryList": [
@@ -1066,11 +1086,6 @@
       "id": 1,
       "userId": 1,
       "IngredientId": 1
-    },
-    {
-      "userId": 4,
-      "IngredientId": 1,
-      "id": 2
     },
     {
       "userId": 4,
@@ -1101,6 +1116,46 @@
       "userId": 4,
       "IngredientId": 25,
       "id": 8
+    },
+    {
+      "userId": 4,
+      "IngredientId": 1,
+      "id": 9
+    },
+    {
+      "userId": 1,
+      "IngredientId": 78,
+      "id": 10
+    },
+    {
+      "userId": 1,
+      "IngredientId": 25,
+      "id": 11
+    },
+    {
+      "userId": 1,
+      "IngredientId": 19,
+      "id": 12
+    },
+    {
+      "userId": 1,
+      "IngredientId": 21,
+      "id": 13
+    },
+    {
+      "userId": 1,
+      "IngredientId": 3,
+      "id": 14
+    },
+    {
+      "userId": 1,
+      "IngredientId": 11,
+      "id": 15
+    },
+    {
+      "userId": 1,
+      "IngredientId": 22,
+      "id": 16
     }
   ],
   "DrinkIngredients": [

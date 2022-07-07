@@ -42,7 +42,7 @@ const assembleCocktail = (cocktail) => {
     return (
         <div>
             <label className="searchBar">search</label>
-            <input type="text" onChange={(evt) => {
+            <input type="text" value={searchQuery} onChange={(evt) => {
                 setSearchQuery(evt.target.value)
             }} />
             <ul>

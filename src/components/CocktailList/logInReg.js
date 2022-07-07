@@ -33,7 +33,11 @@ export const Login = () => {
     }
 
     const handleRegister = () => {
-        fetch("http://localhost:3004/users").then(response => response.json()).then(
+        if (email === "" || password === ""){
+            setWarningMessage('both fields are required!')
+        } 
+        else {
+            fetch("http://localhost:3004/users").then(response => response.json()).then(
             (users) => {
                 const matchingUser = users.find(user => user.email === email)
                 if (matchingUser) {
@@ -61,6 +65,9 @@ export const Login = () => {
                 }
             }
         )
+
+        }
+        
     }   
 
 
