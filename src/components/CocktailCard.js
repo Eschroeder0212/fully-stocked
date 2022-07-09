@@ -2,7 +2,7 @@ import { IngredientItem } from "./IngredientItem"
 
 export const CocktailCard = ({cocktail, ingredients, drinkIngredients}) => {
     return(
-        <div>
+        <div className="cocktail-card">
         <div className="cocktail-img">
             <img
                 className="contain-fit"

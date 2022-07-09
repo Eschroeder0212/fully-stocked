@@ -5,6 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color:black;
 }
 
 code {
@@ -13,5 +14,24 @@ code {
 }
 
 nav > a {
-  padding: 0 5px 0 5px;
+  padding: 2px 5px 2px 5px;
+  border: 2px solid #FFFFF0;
+  border-radius: 3px;
+  background-color: black;
+  color: gold;
+}
+
+.cocktail-card {
+  border: 1px solid black;
+  border-radius: 10px;
+  background-color: #FFFFF0;
+  padding: 15px 0 15px 0;
+  margin-right:15px;
+  margin-bottom:15px;
+}
+
+.searchBar {
+  color: gold;
+  font-weight: bold;
+  padding: 0 10px 0 10px;
 }
